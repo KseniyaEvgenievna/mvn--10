@@ -7,28 +7,30 @@ public class Radio {
     private int currentVolume;
     private int maxStation;
     private int minStation;
-    private int minVolume;
-    private int maxVolume;
 
 
-public Radio() {//конструктор пустой
+
+    public Radio() {//конструктор пустой
         maxStation = 9;
     }
+
+
 
     public Radio(int StationsCount) {//конструктор
         maxStation = StationsCount -1;
     }
 
-    public void next() {//метод переключения на следующю станцию
-        if (currentStation != 9) {
+
+    public void next() {//метод переключения на следующюю станцию
+        if (currentStation != maxStation) {
             currentStation++;
         } else {
             currentStation = minStation;
         }
     }
 
-    public void prev() {//метод переключения на предыдущую станцию
-        if (currentStation != MinStation) {
+    public void prev() {//метод переключения на предыдущуюю станцию
+        if (currentStation != minStation) {
             currentStation--;
         } else {
             currentStation = maxStation;
@@ -40,7 +42,7 @@ public Radio() {//конструктор пустой
     }
 
     public void setCurrentStation(int currentStation) {
-        if (currentStation < maxStation) {
+        if (currentStation < minStation) {
             return;
         }
         if (currentStation > maxStation) {
@@ -54,24 +56,24 @@ public Radio() {//конструктор пустой
     }
 
     public void setCurrentVolume(int currentVolume) {
-        if (currentVolume > maxVolume) {
+        if (currentVolume > 100) {
             return;
         }
-        if (currentVolume < minVolume) {
+        if (currentVolume < 0) {
             return;
         }
         this.currentVolume = currentVolume;
     }
 
     public void increaseVolume() {//метод для увеличения звука
-        if (currentVolume < maxVolume) {
+        if (currentVolume < 100) {
             setCurrentVolume(currentVolume + 1);
 
         }
     }
 
     public void reduceVolume() {//метод для уменьшения звука
-        if (currentVolume > minVolume) {
+        if (currentVolume > 0) {
             setCurrentVolume(currentVolume - 1);
         }
     }
