@@ -5,21 +5,33 @@ public class Radio {
 
     private int currentStation;
     private int currentVolume;
+    private int maxStation;
+    private int minStation;
+    private int minVolume;
+    private int maxVolume;
 
+
+public Radio() {//конструктор пустой
+        maxStation = 9;
+    }
+
+    public Radio(int StationsCount) {//конструктор
+        maxStation = StationsCount -1;
+    }
 
     public void next() {//метод переключения на следующю станцию
         if (currentStation != 9) {
             currentStation++;
         } else {
-            currentStation = 0;
+            currentStation = minStation;
         }
     }
 
     public void prev() {//метод переключения на предыдущую станцию
-        if (currentStation != 0) {
+        if (currentStation != MinStation) {
             currentStation--;
         } else {
-            currentStation = 9;
+            currentStation = maxStation;
         }
     }
 
@@ -28,10 +40,10 @@ public class Radio {
     }
 
     public void setCurrentStation(int currentStation) {
-        if (currentStation < 0) {
+        if (currentStation < maxStation) {
             return;
         }
-        if (currentStation > 9) {
+        if (currentStation > maxStation) {
             return;
         }
         this.currentStation = currentStation;
@@ -42,24 +54,24 @@ public class Radio {
     }
 
     public void setCurrentVolume(int currentVolume) {
-        if (currentVolume > 100) {
+        if (currentVolume > maxVolume) {
             return;
         }
-        if (currentVolume < 0) {
+        if (currentVolume < minVolume) {
             return;
         }
         this.currentVolume = currentVolume;
     }
 
     public void increaseVolume() {//метод для увеличения звука
-        if (currentVolume < 100) {
+        if (currentVolume < maxVolume) {
             setCurrentVolume(currentVolume + 1);
 
         }
     }
 
     public void reduceVolume() {//метод для уменьшения звука
-        if (currentVolume > 0) {
+        if (currentVolume > minVolume) {
             setCurrentVolume(currentVolume - 1);
         }
     }
